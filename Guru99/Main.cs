@@ -14,11 +14,14 @@ namespace Guru99
     [TestClass]
     public class Main
     {
-        private IWebDriver _driver;
-        private ChromeOptions _chromeOptions;
-        private WebDriverWait _wait;
+        //public IWebDriver _driver;
+        //public ChromeOptions _chromeOptions;
+        //public WebDriverWait _wait;
+
+        public const string MobileLink = "MOBILE";
 
         Mobile mobile = new Mobile();
+        
         //MobileProducts mobileProducts = new MobileProducts();
 
         //[TestInitialize]
@@ -38,7 +41,7 @@ namespace Guru99
         public void VerifyAndSortByName()
         {
             mobile.Setup();
-            mobile.ClickOnMobileOption("MOBILE");
+            mobile.ClickOnMobileOption(MobileLink);
             mobile.VerifyTitle();
             mobile.SortByName();
             mobile.TearDown();
@@ -49,9 +52,12 @@ namespace Guru99
         public void VerifyCostOfProductInListAndDetails()
         {
             mobile.Setup();
-            mobile.ClickOnMobileOption("MOBILE");
+            mobile.ClickOnMobileOption(MobileLink);
             mobile.CostOfSonyXperiaMobile();
             mobile.ClickOnSonyXperia();
+            mobile.PriceDescriptionOfXperiaMobile();
+            mobile.ReadMobileDetails();
+            mobile.CompareValuesPrices();
             mobile.TearDown();
         }
 
@@ -60,6 +66,5 @@ namespace Guru99
         //    _driver.Close();
         //    _driver.Quit();
         //}
-
     }
 }
