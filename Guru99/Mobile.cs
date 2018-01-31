@@ -4,6 +4,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -71,10 +72,19 @@ namespace Guru99
             try
             {
                 IWebElement selectSort = _driver.FindElement(By.XPath("//select[@title='Sort By']"));
+                // _wait.Until(ExpectedConditions.ElementToBeSelected(selectSort));
                 SelectElement select = new SelectElement(selectSort);
-                select.SelectByIndex(1);
-                Thread.Sleep(5000);
-                //Console.WriteLine("The option selected is: ");
+
+                var selectingElement = select;
+                selectingElement.SelectByIndex(1);
+                select = selectingElement;
+
+                Console.WriteLine("The option selected is: " + select.SelectedOption);
+
+                //Take a screenshot for evidence.
+                Screenshot ss = ((ITakesScreenshot)_driver).GetScreenshot();
+                ss.SaveAsFile(@"C:\Users\Leonime\Desktop\screenshot\img01.png", ScreenshotImageFormat.Png);
+                Console.WriteLine("User has screenshoted.");
             }
 
             catch (NoSuchElementException e)
@@ -90,7 +100,7 @@ namespace Guru99
         {
             string priceSonyXperia = _driver.FindElement(By.Id("product-price-1"))
                 .Text;
-            // _wait.Until(ExpectedConditions.ElementToBeSelected(priceSonyXperia));
+            //_wait.Until(ExpectedConditions.ElementToBeSelected(priceSonyXperia));
             Thread.Sleep(5000);
             Assert.AreEqual("$100.00", priceSonyXperia);
             Console.WriteLine("Product Value in list and details pagre should be equal " + priceSonyXperia + " dlls.");
