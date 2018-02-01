@@ -68,6 +68,10 @@ namespace Guru99
             mobile.ClickOnMobileOption(MobileLink);
             mobile.AddToCartButton();
             mobile.ChangeQuantity();
+            //mobile.screenshotEvidence();
+            mobile.ErrorMessage();
+            mobile.EmptyCartLink();
+            mobile.VerifyCartIsEmpty();
             mobile.TearDown();
         }
 

@@ -141,7 +141,7 @@ namespace Guru99
         public void ReadMobileDetails()
         {
             IWebElement readDetailsTab = _driver.FindElement(By.CssSelector("#collateral-tabs>dd.tab-container.current>div>div"));
-            //XPATH: _driver.FindElement(By.XPath("//div[@class='tab-content']/h2")).Text;
+            //XPATH is not working for text: _driver.FindElement(By.XPath("//div[@class='tab-content']/h2")).Text;
             Console.WriteLine("The description is: " + readDetailsTab.Text);
         }
 
@@ -213,7 +213,55 @@ namespace Guru99
             _wait.Until(ExpectedConditions.ElementToBeClickable(updateButton));
             updateButton.Click();
             Console.WriteLine("Update button was clicked.");
+
+            //Take a screenshot for evidence.
+            Screenshot ss = ((ITakesScreenshot)_driver).GetScreenshot();
+            ss.SaveAsFile(@"C:\Users\Leonime\Desktop\screenshot\ErrorCart.png", ScreenshotImageFormat.Png);
             Thread.Sleep(5000);
+        }
+
+        [TestMethod]
+        [TestCategory("Verify error message.")]
+        public void ErrorMessage()
+        {
+            string message = "* The maximum quantity allowed for purchase is 500."; 
+            IWebElement errorMessage = _driver.FindElement(By.CssSelector("#shopping-cart-table>tbody>tr>td.product-cart-info>p"));
+            Assert.AreEqual(message, errorMessage.Text);
+            Console.WriteLine(message);
+        }
+
+        [TestMethod]
+        [TestCategory("Click on 'EMPTY CART' link in the footer of list of all mobiles.")]
+        public void EmptyCartLink()
+        {
+            try
+            {
+                IWebElement emptyCart = _driver.FindElement(By.Id("empty_cart_button"));
+                _wait.Until(ExpectedConditions.ElementToBeClickable(emptyCart));
+                emptyCart.Click();
+                Console.WriteLine("Link clicked.");
+                Thread.Sleep(5000);
+            }
+            
+            catch (StaleElementReferenceException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            //Take a screenshot for evidence.
+            Screenshot ss = ((ITakesScreenshot)_driver).GetScreenshot();
+            ss.SaveAsFile(@"C:\Users\Leonime\Desktop\screenshot\Empty.png", ScreenshotImageFormat.Png);
+            Thread.Sleep(5000);
+        }
+
+        [TestMethod]
+        [TestCategory("Veify shopping cart is empty.")]
+        public void VerifyCartIsEmpty()
+        {
+            string message = "SHOPPING CART IS EMPTY";
+            IWebElement titleEmptyCart = _driver.FindElement(By.ClassName("page-title"));
+            Assert.AreEqual(message, titleEmptyCart.Text);
+            Console.WriteLine(message);
         }
 
         [TestCleanup]
@@ -222,6 +270,5 @@ namespace Guru99
             _driver.Close();
             _driver.Quit();
         }
-
     }
 }
