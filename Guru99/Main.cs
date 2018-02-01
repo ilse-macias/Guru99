@@ -21,9 +21,8 @@ namespace Guru99
         public const string MobileLink = "MOBILE";
 
         Mobile mobile = new Mobile();
+      //  MobileProducts mobileProducts = new MobileProducts();
         
-        //MobileProducts mobileProducts = new MobileProducts();
-
         //[TestInitialize]
         //public void Setup()
         //{
@@ -58,6 +57,17 @@ namespace Guru99
             mobile.PriceDescriptionOfXperiaMobile();
             mobile.ReadMobileDetails();
             mobile.CompareValuesPrices();
+            mobile.TearDown();
+        }
+
+        [TestMethod]
+        [TestCategory("Verify that you cannot add more product in cart than the product available in store")]
+        public void NoAddMoreProductsInCart()
+        {
+            mobile.Setup();
+            mobile.ClickOnMobileOption(MobileLink);
+            mobile.AddToCartButton();
+            mobile.ChangeQuantity();
             mobile.TearDown();
         }
 
