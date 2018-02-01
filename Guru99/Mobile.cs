@@ -15,13 +15,13 @@ namespace Guru99
     [TestClass]
     public class Mobile 
     {
-        private IWebDriver _driver;
-        private ChromeOptions _chromeOptions;
-        private WebDriverWait _wait;
+        public IWebDriver _driver;
+        public ChromeOptions _chromeOptions;
+        public WebDriverWait _wait;
 
         public const string MobileLink = "MOBILE";
 
-        //    MobileProducts mobileProducts = new MobileProducts();
+       // MobileProducts mobileProducts = new MobileProducts();
 
         [TestInitialize]
         public void Setup()
@@ -79,7 +79,7 @@ namespace Guru99
                 selectingElement.SelectByIndex(1);
                 select = selectingElement;
 
-                Console.WriteLine("The option selected is: " + select.SelectedOption);
+                Console.WriteLine("The option selected is: " + select);
 
                 //Take a screenshot for evidence.
                 Screenshot ss = ((ITakesScreenshot)_driver).GetScreenshot();
@@ -100,7 +100,7 @@ namespace Guru99
         {
             string priceSonyXperia = _driver.FindElement(By.Id("product-price-1"))
                 .Text;
-            //_wait.Until(ExpectedConditions.ElementToBeSelected(priceSonyXperia));
+            //  _wait.Until(ExpectedConditions.ElementToBeSelected(priceSonyXperia));
             Thread.Sleep(5000);
             Assert.AreEqual("$100.00", priceSonyXperia);
             Console.WriteLine("Product Value in list and details pagre should be equal " + priceSonyXperia + " dlls.");
@@ -120,7 +120,7 @@ namespace Guru99
                 Console.WriteLine("Sony Xperia mobile has been clicked.");
             }
 
-            catch(NoSuchElementException ex)
+            catch (NoSuchElementException ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -141,8 +141,8 @@ namespace Guru99
         public void ReadMobileDetails()
         {
             IWebElement readDetailsTab = _driver.FindElement(By.CssSelector("#collateral-tabs>dd.tab-container.current>div>div"));
-                //_driver.FindElement(By.XPath("//div[@class='tab-content']/h2")).Text;
-            Console.WriteLine("The description is: " + readDetailsTab.Text); 
+            //XPATH: _driver.FindElement(By.XPath("//div[@class='tab-content']/h2")).Text;
+            Console.WriteLine("The description is: " + readDetailsTab.Text);
         }
 
         [TestMethod]
@@ -162,6 +162,58 @@ namespace Guru99
             {
                 Console.WriteLine(e.Message);
             }
+        }
+        
+        //Cart
+        [TestMethod]
+        public void AddToCartButton()
+        {
+            IList<IWebElement> itemOption = _driver.FindElements(By.XPath("//li[@class='item last']"));
+            Console.WriteLine("Total of elements: " + itemOption.Count);
+
+            //  for (int countOption = 0; countOption <= itemOption.Count; countOption++)
+            //  {
+            // int numberPositionTitle = 1;
+            // IList<IWebElement> titleOption = _driver.FindElements(By.ClassName("product-name"));
+
+            IList<IWebElement> button = _driver.FindElements(By.XPath("//button[@type='button']"));
+            
+                for (int countButton = 0; countButton <= button.Count; countButton++)
+                {
+                    //Change the number position of button (Range: 0 - 3)
+                    int numberPositionButton = 0; 
+                    
+                    //Do a compare No. counted (for) and the number position of button.
+                    if (countButton == numberPositionButton)
+                    {
+                        _wait.Until(ExpectedConditions.ElementToBeClickable(button[numberPositionButton]));
+                        button[numberPositionButton].Click();
+                        Console.WriteLine("User has clicked.");
+                     //   Thread.Sleep(5000);
+                    }
+                }
+
+                //Assert.AreEqual("IPHONE", titleOption[numberPositionTitle].Text);
+                //Console.WriteLine("The option selected is: " + titleOption[numberPositionTitle].Text);
+         //   }
+        }
+        
+        [TestMethod]
+        [TestCategory("Change 'QTY' value to 1000 and click 'UPDATE' button.")]
+        public void ChangeQuantity()
+        {
+            IWebElement quantity = _driver.FindElement(By.XPath("//input[@class='input-text qty']"));
+            _wait.Until(ExpectedConditions.ElementToBeClickable(quantity));
+            quantity.Click();
+            quantity.Clear();
+            quantity.SendKeys("1000");
+            Console.WriteLine("Quantity changed.");
+            
+            IWebElement updateButton = _driver.FindElement(By.XPath("//*[@title='Update']"));
+            _wait.Until(ExpectedConditions.ElementToBeClickable(updateButton));
+            updateButton.Click();
+            Console.WriteLine("Update button was clicked.");
+            Thread.Sleep(5000);
         }
 
         [TestCleanup]
