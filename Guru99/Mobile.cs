@@ -330,7 +330,22 @@ namespace Guru99
         [TestCategory("Verify the pop-up window and check that the products are reflectd in it.")]
         public void PopUpWindows()
         {
-            var tabs = _driver.WindowHandles;
+            //Switch the windows.
+            var windows = _driver.WindowHandles;
+            foreach(string handle in windows)
+            {
+                Console.WriteLine("Switching to windows: " + handle);
+                _driver.SwitchTo().Window(handle);
+                Thread.Sleep(5000);
+            }
+
+            IWebElement compareTitle = _driver.FindElement(By.CssSelector("body>div>div.page-title.title-buttons>h1"));
+            Assert.AreEqual("COMPARE PRODUCTS", compareTitle.Text);
+            Console.WriteLine("Title are equals " + compareTitle.Text);
+
+            //Compare labels.
+
+
         }
 
         [TestCleanup]

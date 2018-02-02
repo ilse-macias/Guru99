@@ -87,6 +87,7 @@ namespace Guru99
             mobile.ClickOnMobileOption(MobileLink);
             mobile.AddToCompareLink();
             mobile.CompareButton();
+            mobile.PopUpWindows();
             mobile.TearDown();
         }
 
