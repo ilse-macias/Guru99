@@ -19,9 +19,12 @@ namespace Guru99
         //public WebDriverWait _wait;
 
         public const string MobileLink = "MOBILE";
+        public const string TelevisionLink = "TV";
 
         Mobile mobile = new Mobile();
-      //  MobileProducts mobileProducts = new MobileProducts();
+       // Television television = new Television();
+        //Cart cart = new Cart();
+        //MobileProducts mobileProducts = new MobileProducts();
         
         //[TestInitialize]
         //public void Setup()
@@ -66,12 +69,24 @@ namespace Guru99
         {
             mobile.Setup();
             mobile.ClickOnMobileOption(MobileLink);
+            
             mobile.AddToCartButton();
             mobile.ChangeQuantity();
             //mobile.screenshotEvidence();
             mobile.ErrorMessage();
             mobile.EmptyCartLink();
             mobile.VerifyCartIsEmpty();
+            mobile.TearDown();
+        }
+
+        [TestMethod]
+        [TestCategory("Verify that you are able to compare two product")]
+        public void HandlingPopupWindows()
+        {
+            mobile.Setup();
+            mobile.ClickOnMobileOption(MobileLink);
+            mobile.AddToCompareLink();
+            mobile.CompareButton();
             mobile.TearDown();
         }
 

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Guru99
 {
     [TestClass]
-    public class Mobile 
+    public class Mobile
     {
         public IWebDriver _driver;
         public ChromeOptions _chromeOptions;
@@ -21,7 +21,8 @@ namespace Guru99
 
         public const string MobileLink = "MOBILE";
 
-       // MobileProducts mobileProducts = new MobileProducts();
+        // MobileProducts mobileProducts = new MobileProducts();
+        Cart cart = new Cart();
 
         [TestInitialize]
         public void Setup()
@@ -93,7 +94,7 @@ namespace Guru99
             }
         }
 
-        //Products
+        //**Products**//
         [TestMethod]
         [TestCategory("Read the cost of Sony Xperia mobile")]
         public string CostOfSonyXperiaMobile()
@@ -163,41 +164,43 @@ namespace Guru99
                 Console.WriteLine(e.Message);
             }
         }
-        
-        //Cart
+
+        //**Cart**//
         [TestMethod]
         public void AddToCartButton()
         {
+            int positionItem = 1;
             IList<IWebElement> itemOption = _driver.FindElements(By.XPath("//li[@class='item last']"));
             Console.WriteLine("Total of elements: " + itemOption.Count);
 
-            //  for (int countOption = 0; countOption <= itemOption.Count; countOption++)
-            //  {
-            // int numberPositionTitle = 1;
-            // IList<IWebElement> titleOption = _driver.FindElements(By.ClassName("product-name"));
-
-            IList<IWebElement> button = _driver.FindElements(By.XPath("//button[@type='button']"));
-            
-                for (int countButton = 0; countButton <= button.Count; countButton++)
+            for (int countOption = 0; countOption <= itemOption.Count; countOption++)
+            {
+                //int numberPositionTitle = 1;
+                // IList<IWebElement> titleOption = _driver.FindElements(By.ClassName("product-name"));
+                if(positionItem == countOption)
                 {
-                    //Change the number position of button (Range: 0 - 3)
-                    int numberPositionButton = 0; 
-                    
-                    //Do a compare No. counted (for) and the number position of button.
-                    if (countButton == numberPositionButton)
-                    {
-                        _wait.Until(ExpectedConditions.ElementToBeClickable(button[numberPositionButton]));
-                        button[numberPositionButton].Click();
-                        Console.WriteLine("User has clicked.");
-                     //   Thread.Sleep(5000);
-                    }
-                }
+                    IList<IWebElement> button = _driver.FindElements(By.XPath("//button[@type='button']"));
 
-                //Assert.AreEqual("IPHONE", titleOption[numberPositionTitle].Text);
-                //Console.WriteLine("The option selected is: " + titleOption[numberPositionTitle].Text);
-         //   }
+                    for (int countButton = 0; countButton <= button.Count; countButton++)
+                    {
+                        //Change the number position of button (Range: 0 - 3)
+                        int numberPositionButton = positionItem;
+
+                        //Do a compare No. counted (for) and the number position of button.
+                        if (countButton == numberPositionButton)
+                        {
+                            _wait.Until(ExpectedConditions.ElementToBeClickable(button[numberPositionButton]));
+                            button[numberPositionButton].Click();
+                            Console.WriteLine("User has clicked.");
+                            Thread.Sleep(5000);
+                        }
+                    }
+                }             
+            }
+            //Assert.AreEqual("IPHONE", titleOption[numberPositionTitle].Text);
+            //Console.WriteLine("The option selected is: " + titleOption[numberPositionTitle].Text);
         }
-        
+
         [TestMethod]
         [TestCategory("Change 'QTY' value to 1000 and click 'UPDATE' button.")]
         public void ChangeQuantity()
@@ -208,7 +211,7 @@ namespace Guru99
             quantity.Clear();
             quantity.SendKeys("1000");
             Console.WriteLine("Quantity changed.");
-            
+
             IWebElement updateButton = _driver.FindElement(By.XPath("//*[@title='Update']"));
             _wait.Until(ExpectedConditions.ElementToBeClickable(updateButton));
             updateButton.Click();
@@ -224,7 +227,7 @@ namespace Guru99
         [TestCategory("Verify error message.")]
         public void ErrorMessage()
         {
-            string message = "* The maximum quantity allowed for purchase is 500."; 
+            string message = "* The maximum quantity allowed for purchase is 500.";
             IWebElement errorMessage = _driver.FindElement(By.CssSelector("#shopping-cart-table>tbody>tr>td.product-cart-info>p"));
             Assert.AreEqual(message, errorMessage.Text);
             Console.WriteLine(message);
@@ -242,7 +245,7 @@ namespace Guru99
                 Console.WriteLine("Link clicked.");
                 Thread.Sleep(5000);
             }
-            
+
             catch (StaleElementReferenceException ex)
             {
                 Console.WriteLine(ex.Message);
@@ -255,13 +258,79 @@ namespace Guru99
         }
 
         [TestMethod]
-        [TestCategory("Veify shopping cart is empty.")]
+        [TestCategory("Verify shopping cart is empty.")]
         public void VerifyCartIsEmpty()
         {
             string message = "SHOPPING CART IS EMPTY";
             IWebElement titleEmptyCart = _driver.FindElement(By.ClassName("page-title"));
             Assert.AreEqual(message, titleEmptyCart.Text);
             Console.WriteLine(message);
+        }
+
+        //**HandlingPopupWindows**//
+        [TestMethod]
+        [TestCategory("In mobile products list, click on 'Add To Compare' for two mobiles.")]
+        public void AddToCompareLink()
+        {
+            int positionOne = 0;
+            int positionTwo = 2;
+            IList<IWebElement> positionItem = _driver.FindElements(By.XPath("//li[@class='item last']"));
+
+            //Elements
+            for(int i=0; i<=positionItem.Count; i++)
+            {
+                if(i == positionOne)
+                {
+                    //Change # position
+                    int positionAddToCompare = positionOne;
+                    IList<IWebElement> elementAddToCompare = _driver.FindElements(By.ClassName("link-compare"));
+
+                    //Add to compare button.
+                    for (int count = 0; count <= elementAddToCompare.Count; count++)
+                    {
+                        if (count == positionAddToCompare)
+                        {
+                            elementAddToCompare[positionAddToCompare].Click();
+                            Console.WriteLine("The button was clicked. " + elementAddToCompare[positionAddToCompare]);
+                            Thread.Sleep(5000);
+                        }
+                    }
+                }
+
+                if (i == positionTwo)
+                {
+                    //Change # position
+                    int positionAddToCompare = positionTwo;
+                    IList<IWebElement> elementAddToCompare = _driver.FindElements(By.ClassName("link-compare"));
+
+                    //Add to compare button.
+                    for (int count = 0; count <= elementAddToCompare.Count; count++)
+                    {
+                        if (count == positionAddToCompare)
+                        {
+                            elementAddToCompare[positionAddToCompare].Click();
+                            Console.WriteLine("The button was clicked. " + elementAddToCompare[positionAddToCompare]);
+                            Thread.Sleep(5000);
+                        }
+                    }
+                }
+            }
+        }
+
+        [TestMethod]
+        [TestCategory("Click on 'COMPARE' button.")]
+        public void CompareButton()
+        {
+            IWebElement compareButton = _driver.FindElement(By.XPath("//button[@title='Compare']"));
+            compareButton.Click();
+            _wait.Until(ExpectedConditions.ElementToBeClickable(compareButton));
+        }
+
+        [TestMethod]
+        [TestCategory("Verify the pop-up window and check that the products are reflectd in it.")]
+        public void PopUpWindows()
+        {
+            var tabs = _driver.WindowHandles;
         }
 
         [TestCleanup]
