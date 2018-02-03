@@ -22,7 +22,7 @@ namespace Guru99
         public const string TelevisionLink = "TV";
 
         Mobile mobile = new Mobile();
-       // Television television = new Television();
+       Television television = new Television();
         //Cart cart = new Cart();
         //MobileProducts mobileProducts = new MobileProducts();
         
@@ -88,6 +88,16 @@ namespace Guru99
             mobile.AddToCompareLink();
             mobile.CompareButton();
             mobile.PopUpWindows();
+            mobile.TearDown();
+        }
+
+        [TestMethod]
+        [TestCategory("Verify you can create account in E-commerce site and can share wishlist to other people using email.")]
+        public void Ecommerce()
+        {
+            mobile.Setup();
+            mobile.MyAccountOption();
+            mobile.CreateAccountAndFillInfo();
             mobile.TearDown();
         }
 

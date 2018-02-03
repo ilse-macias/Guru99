@@ -20,9 +20,9 @@ namespace Guru99
         public WebDriverWait _wait;
 
         public const string MobileLink = "MOBILE";
-
-        // MobileProducts mobileProducts = new MobileProducts();
-        Cart cart = new Cart();
+        
+        //MobileProducts mobileProducts = new MobileProducts();
+       // Cart cart = new Cart();
 
         [TestInitialize]
         public void Setup()
@@ -33,7 +33,7 @@ namespace Guru99
             _driver.Manage().Cookies.DeleteAllCookies();
             _driver.Navigate().GoToUrl("http://live.guru99.com/index.php/");
             _driver.Manage().Window.Maximize();
-            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
         }
 
         [TestMethod]
@@ -94,7 +94,7 @@ namespace Guru99
             }
         }
 
-        //**Products**//
+        ////**Products**//
         [TestMethod]
         [TestCategory("Read the cost of Sony Xperia mobile")]
         public string CostOfSonyXperiaMobile()
@@ -346,6 +346,47 @@ namespace Guru99
             //Compare labels.
 
 
+        }
+
+        //**Ecommerce**//
+        [TestMethod]
+        [TestCategory("Click on 'My Account' link.")]
+        public void MyAccountOption()
+        {
+            //Account
+            IWebElement account = _driver.FindElement(By.XPath("//*[@class='skip-link skip-account']"));
+            _wait.Until(ExpectedConditions.ElementToBeClickable(account));
+            account.Click();
+            Thread.Sleep(5000);
+
+            //My Account
+            IWebElement myAccount = _driver.FindElement(By.CssSelector("#header-account>div>ul>li.first>a"));
+            try
+            {
+               // _wait.Until(ExpectedConditions.ElementToBeSelected(myAccount));
+                Thread.Sleep(15000);
+                myAccount.Click();
+            }
+
+            catch(WebDriverTimeoutException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        
+        [TestMethod]
+        [TestCategory("Click 'Create Account' link and fill 'New User' information except 'Email ID'.")]
+        public void CreateAccountAndFillInfo()
+        {
+            IWebElement createAnAccountButton = _driver.FindElement(By.CssSelector("#login-form>div>div.col-1.new-users>div.buttons-set>a"));
+            _wait.Until(ExpectedConditions.ElementToBeClickable(createAnAccountButton));
+            createAnAccountButton.Click();
+
+            IWebElement firstName = _driver.FindElement(By.Id("firstname"));
+            firstName.SendKeys("Brayan");
+            _wait.Until(ExpectedConditions.ElementExists(By.Id("firstname")));
+            Console.WriteLine("First Name: " + firstName);
+            _wait.Until(ExpectedConditions.ElementExists(By.Id("middlename")));
         }
 
         [TestCleanup]

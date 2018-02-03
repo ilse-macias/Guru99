@@ -59,7 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cart.cs" />
-    <Compile Include="Guru99.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Mobile.cs" />
     <Compile Include="MobileProducts.cs" />
