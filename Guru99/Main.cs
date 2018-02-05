@@ -21,9 +21,10 @@ namespace Guru99
         public const string MobileLink = "MOBILE";
         public const string TelevisionLink = "TV";
 
+        Cart cart = new Cart();
         Mobile mobile = new Mobile();
         Television television = new Television();
-        //Cart cart = new Cart();
+
         //MobileProducts mobileProducts = new MobileProducts();
         
         //[TestInitialize]
@@ -67,16 +68,15 @@ namespace Guru99
         [TestCategory("Verify that you cannot add more product in cart than the product available in store")]
         public void NoAddMoreProductsInCart()
         {
-            mobile.Setup();
-            mobile.ClickOnMobileOption(MobileLink);
-            
-            mobile.AddToCartButton();
-            mobile.ChangeQuantity();
-            //mobile.screenshotEvidence();
-            mobile.ErrorMessage();
-            mobile.EmptyCartLink();
-            mobile.VerifyCartIsEmpty();
-            mobile.TearDown();
+            cart.Setup();
+            cart.ClickOnMobileOption(MobileLink);
+            //mobile.CartClass();
+            cart.AddToCartButton();
+            cart.ChangeQuantity();
+            cart.ErrorMessage();
+            cart.EmptyCartLink();
+            cart.VerifyCartIsEmpty();
+            cart.TearDown();
         }
 
         [TestMethod]
@@ -99,6 +99,7 @@ namespace Guru99
             mobile.MyAccountOption();
             mobile.CreateAccountAndFillInfo();
             mobile.TearDown();
+            mobile.RegisterButton();
         }
 
         //public void TearDown()
