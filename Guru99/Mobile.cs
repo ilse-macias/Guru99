@@ -378,15 +378,53 @@ namespace Guru99
         [TestCategory("Click 'Create Account' link and fill 'New User' information except 'Email ID'.")]
         public void CreateAccountAndFillInfo()
         {
-            IWebElement createAnAccountButton = _driver.FindElement(By.CssSelector("#login-form>div>div.col-1.new-users>div.buttons-set>a"));
-            _wait.Until(ExpectedConditions.ElementToBeClickable(createAnAccountButton));
-            createAnAccountButton.Click();
+            try
+            {
+                IWebElement createAnAccountButton = _driver.FindElement(By.CssSelector("#login-form>div>div.col-1.new-users>div.buttons-set>a"));
+                _wait.Until(ExpectedConditions.ElementToBeClickable(createAnAccountButton));
+                createAnAccountButton.Click();
+            }
+            
+            catch (NoSuchElementException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
+            //Fill all fields.
             IWebElement firstName = _driver.FindElement(By.Id("firstname"));
-            firstName.SendKeys("Brayan");
-            _wait.Until(ExpectedConditions.ElementExists(By.Id("firstname")));
-            Console.WriteLine("First Name: " + firstName);
-            _wait.Until(ExpectedConditions.ElementExists(By.Id("middlename")));
+            firstName.SendKeys("Brain");
+            //_wait.Until(ExpectedConditions.ElementExists(By.Id("firstname")));
+            Thread.Sleep(5000);
+            Console.WriteLine("First Name: " + firstName.GetAttribute("value"));
+
+            IWebElement lastName = _driver.FindElement(By.Id("lastname"));
+            lastName.SendKeys("Regan");
+            //_wait.Until(ExpectedConditions.ElementIsVisible(By.Id("lastname")));
+            Thread.Sleep(5000);
+            Console.WriteLine("Last Name: " + lastName.GetAttribute("value"));
+
+            IWebElement email = _driver.FindElement(By.Id("email_address"));
+            email.SendKeys("test@mailinator.com");
+            Console.WriteLine("Email: " + email.GetAttribute("value"));
+
+            IWebElement password = _driver.FindElement(By.Id("password"));
+            password.SendKeys("1234");
+            //_wait.Until(ExpectedConditions.ElementExists(By.Id("password")));
+            Thread.Sleep(5000);
+            Console.WriteLine("Password: " + password.GetAttribute("value"));
+
+            IWebElement confirmPassword = _driver.FindElement(By.Id("confirmation"));
+            confirmPassword.SendKeys("1234");
+            Thread.Sleep(5000);
+            Console.WriteLine("Confirm password: " + confirmPassword.GetAttribute("value"));
+        }
+
+        [TestMethod]
+        public void RegisterButton()
+        {
+            _driver.FindElement(By.XPath("//button[@title='Register']"))
+                   .Click();
+            Console.WriteLine("The button has been clicked.");
         }
 
         [TestCleanup]
