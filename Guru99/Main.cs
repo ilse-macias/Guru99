@@ -24,6 +24,7 @@ namespace Guru99
         Cart cart = new Cart();
         Mobile mobile = new Mobile();
         Television television = new Television();
+        Account account = new Account();
 
         //MobileProducts mobileProducts = new MobileProducts();
         
@@ -95,17 +96,11 @@ namespace Guru99
         [TestCategory("Verify you can create account in E-commerce site and can share wishlist to other people using email.")]
         public void Ecommerce()
         {
-            mobile.Setup();
-            mobile.MyAccountOption();
-            mobile.CreateAccountAndFillInfo();
-            mobile.TearDown();
-            mobile.RegisterButton();
+            account.Setup();
+            account.MyAccountOption();
+            account.CreateAccountAndFillInfo();
+            account.RegisterButton();
+            account.TearDown();
         }
-
-        //public void TearDown()
-        //{
-        //    _driver.Close();
-        //    _driver.Quit();
-        //}
     }
 }
