@@ -20,6 +20,7 @@ namespace Guru99
         private WebDriverWait _wait;
         private Actions _actions;
 
+        public const string MobileLink = "MOBILE";
         string url = "http://live.guru99.com/index.php/";
 
         [TestInitialize]
@@ -71,8 +72,9 @@ namespace Guru99
 
         [TestMethod]
         [TestCategory("Click 'Create Account' link and fill 'New User' information except 'Email ID'.")]
-        public void CreateAccountAndFillInfo()
+        public void CreateAccountAndFillInfo(string firstName, string lastName, string email, string password, string confirmPassword)
         {
+            
             try
             {
                 IWebElement createAnAccountButton = _driver.FindElement(By.CssSelector("#login-form>div>div.col-1.new-users>div.buttons-set>a"));
@@ -86,32 +88,32 @@ namespace Guru99
             }
 
             //Fill all fields.
-            IWebElement firstName = _driver.FindElement(By.Id("firstname"));
-            firstName.SendKeys("Brain");
+            IWebElement firstNameField = _driver.FindElement(By.Id("firstname"));
+            firstNameField.SendKeys(firstName);
             //_wait.Until(ExpectedConditions.ElementExists(By.Id("firstname")));
             Thread.Sleep(5000);
-            Console.WriteLine("First Name: " + firstName.GetAttribute("value"));
+            Console.WriteLine("First Name: " + firstNameField.GetAttribute("value"));
 
-            IWebElement lastName = _driver.FindElement(By.Id("lastname"));
-            lastName.SendKeys("Regan");
+            IWebElement lastNameField = _driver.FindElement(By.Id("lastname"));
+            lastNameField.SendKeys(lastName);
             //_wait.Until(ExpectedConditions.ElementIsVisible(By.Id("lastname")));
             Thread.Sleep(5000);
-            Console.WriteLine("Last Name: " + lastName.GetAttribute("value"));
+            Console.WriteLine("Last Name: " + lastNameField.GetAttribute("value"));
 
-            IWebElement email = _driver.FindElement(By.Id("email_address"));
-            email.SendKeys("test@mailinator.com");
-            Console.WriteLine("Email: " + email.GetAttribute("value"));
+            IWebElement emailField = _driver.FindElement(By.Id("email_address"));
+            emailField.SendKeys(email);
+            Console.WriteLine("Email: " + emailField.GetAttribute("value"));
 
-            IWebElement password = _driver.FindElement(By.Id("password"));
-            password.SendKeys("123456");
+            IWebElement passwordField = _driver.FindElement(By.Id("password"));
+            passwordField.SendKeys(password);
             //_wait.Until(ExpectedConditions.ElementExists(By.Id("password")));
             Thread.Sleep(5000);
-            Console.WriteLine("Password: " + password.GetAttribute("value"));
+            Console.WriteLine("Password: " + passwordField.GetAttribute("value"));
 
-            IWebElement confirmPassword = _driver.FindElement(By.Id("confirmation"));
-            confirmPassword.SendKeys("123456");
+            IWebElement confirmPasswordField = _driver.FindElement(By.Id("confirmation"));
+            confirmPasswordField.SendKeys(confirmPassword);
             Thread.Sleep(5000);
-            Console.WriteLine("Confirm password: " + confirmPassword.GetAttribute("value"));
+            Console.WriteLine("Confirm password: " + confirmPasswordField.GetAttribute("value"));
         }
 
         [TestMethod]

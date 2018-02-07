@@ -14,14 +14,13 @@ namespace Guru99
     [TestClass]
     public class Cart
     {
-        public IWebDriver _driver;
-        public ChromeOptions _chromeOptions;
-        public WebDriverWait _wait;
+        private IWebDriver _driver;
+        private ChromeOptions _chromeOptions;
+        private WebDriverWait _wait;
 
         public const string MobileLink = "MOBILE";
         public string url = "http://live.guru99.com/index.php/";
-        //Mobile mobile = new Mobile();
-
+        
         [TestInitialize]
         public void Setup()
         {

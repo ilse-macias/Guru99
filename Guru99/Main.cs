@@ -14,36 +14,23 @@ namespace Guru99
     [TestClass]
     public class Main
     {
-        //public IWebDriver _driver;
-        //public ChromeOptions _chromeOptions;
-        //public WebDriverWait _wait;
-
         public const string MobileLink = "MOBILE";
         public const string TelevisionLink = "TV";
+        
+        Mobile mobile;
+        MobileProducts mobileProducts;
+        Cart cart;
 
-        Cart cart = new Cart();
-        Mobile mobile = new Mobile();
         Television television = new Television();
         Account account = new Account();
-
-        //MobileProducts mobileProducts = new MobileProducts();
         
-        //[TestInitialize]
-        //public void Setup()
-        //{
-        //    _chromeOptions = new ChromeOptions();
-
-        //    _driver = new ChromeDriver(_chromeOptions);
-        //    _driver.Manage().Cookies.DeleteAllCookies();
-        //    _driver.Navigate().GoToUrl("http://live.guru99.com/index.php/");
-        //    _driver.Manage().Window.Maximize();
-        //    _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
-        //}
-
+        //Mobile.cs
         [TestMethod]
         [TestCategory("Verify item in Mobile List page can be sorted by 'Name'.")]
         public void VerifyAndSortByName()
         {
+            mobile = new Mobile();
+
             mobile.Setup();
             mobile.ClickOnMobileOption(MobileLink);
             mobile.VerifyTitle();
@@ -51,24 +38,30 @@ namespace Guru99
             mobile.TearDown();
         }
 
+        //MobileProducts.cs
         [TestMethod]
         [TestCategory("Verify that cost of product in list page and details page are equal.")]
         public void VerifyCostOfProductInListAndDetails()
         {
-            mobile.Setup();
-            mobile.ClickOnMobileOption(MobileLink);
-            mobile.CostOfSonyXperiaMobile();
-            mobile.ClickOnSonyXperia();
-            mobile.PriceDescriptionOfXperiaMobile();
-            mobile.ReadMobileDetails();
-            mobile.CompareValuesPrices();
-            mobile.TearDown();
+            mobileProducts = new MobileProducts();
+
+            mobileProducts.Setup();
+            mobileProducts.ClickOnMobileOption(MobileLink);
+            mobileProducts.CostOfSonyXperiaMobile();
+            mobileProducts.ClickOnSonyXperia();
+            mobileProducts.PriceDescriptionOfXperiaMobile();
+            mobileProducts.ReadMobileDetails();
+            mobileProducts.CompareValuesPrices();
+            mobileProducts.TearDown();
         }
 
+        //Cart.cs
         [TestMethod]
         [TestCategory("Verify that you cannot add more product in cart than the product available in store")]
         public void NoAddMoreProductsInCart()
         {
+            cart = new Cart();
+
             cart.Setup();
             cart.ClickOnMobileOption(MobileLink);
             //mobile.CartClass();
@@ -80,6 +73,7 @@ namespace Guru99
             cart.TearDown();
         }
 
+        //Mobile.cs 2 windows.
         [TestMethod]
         [TestCategory("Verify that you are able to compare two product")]
         public void HandlingPopupWindows()
@@ -92,25 +86,16 @@ namespace Guru99
             mobile.TearDown();
         }
 
+        //Account.cs
         [TestMethod]
         [TestCategory("Verify you can create account in E-commerce site and can share wishlist to other people using email.")]
         public void Ecommerce()
         {
             account.Setup();
             account.MyAccountOption();
-            account.CreateAccountAndFillInfo();
+            account.CreateAccountAndFillInfo("Yudi", "Ramos", "test@mailinator.com", "123456", "123456");
             account.RegisterButton();
             account.VerifyRegistionIsDone();
-
-            //try
-            //{
-             
-            //}
-
-            //catch (NoSuchElementException ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
             account.TearDown();
         }
     }
