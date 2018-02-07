@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Guru99
@@ -47,6 +48,32 @@ namespace Guru99
         //{
 
         //}
+        
+        [TestMethod]
+        public void AddToWishListTV()
+        {
+            int elementPosition = 1;
+            IList<IWebElement> productPosition = _driver.FindElements(By.XPath("//li[@class='item last']"));
+
+            for(int count=0; count<=productPosition.Count; count++)
+            {
+                if(count == elementPosition)
+                {
+                    IList<IWebElement> clickOnWishList = _driver.FindElements(By.ClassName("link-wishlist"));
+
+                    for(int i=0; i<=clickOnWishList.Count; i++)
+                    {
+                        if(i == elementPosition)
+                        {
+                            _wait.Until(ExpectedConditions.ElementToBeClickable(clickOnWishList[elementPosition]));
+                            clickOnWishList[elementPosition].Click();
+                            Console.WriteLine("Botton clicked");
+                            Thread.Sleep(5000);
+                        }
+                    }
+                }
+            }
+        }
 
         [TestCleanup]
         public void TearDown()

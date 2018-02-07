@@ -18,7 +18,7 @@ namespace Guru99
         private IWebDriver _driver;
         private ChromeOptions _options;
         private WebDriverWait _wait;
-        private Actions _action;
+        private Actions _actions;
 
         string url = "http://live.guru99.com/index.php/";
 
@@ -27,7 +27,7 @@ namespace Guru99
         {
             _options = new ChromeOptions();
             _driver = new ChromeDriver(_options);
-            _action = new Actions(_driver);
+            _actions = new Actions(_driver);
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
             
             _driver.Manage().Cookies.DeleteAllCookies();
@@ -41,18 +41,26 @@ namespace Guru99
         {
             //Account
             IWebElement account = _driver.FindElement(By.XPath("//*[@class='skip-link skip-account']"));
-            //_action.MoveToElement(account).Perform();
             _wait.Until(ExpectedConditions.ElementToBeClickable(account));
             account.Click();
             Thread.Sleep(5000);
 
-            //My Account
-            IWebElement myAccount = _driver.FindElement(By.CssSelector("#header-account>div>ul>li.first>a"));
+            //Select 'My Account' sub-option using actions.
+            IWebElement myAccountLink = _driver.FindElement(By.CssSelector("#header-account>div>ul>li.first>a"));
             try
             {
-                // _wait.Until(ExpectedConditions.ElementToBeSelected(myAccount));
-                Thread.Sleep(15000);
-                myAccount.Click();
+                _actions.Click(myAccountLink)
+                    .Build()
+                    .Perform();
+
+                //_wait.Until(ExpectedConditions.ElementToBeSelected(myAccountLink));
+              Thread.Sleep(5000);
+
+                //string myAccountLink = "My Account";
+                //_driver.FindElement(By.LinkText(myAccountLink)).Click();
+                //Thread.Sleep(5000);
+
+                Console.WriteLine("Link clicked: " + myAccountLink);
             }
 
             catch (WebDriverTimeoutException ex)
@@ -68,7 +76,7 @@ namespace Guru99
             try
             {
                 IWebElement createAnAccountButton = _driver.FindElement(By.CssSelector("#login-form>div>div.col-1.new-users>div.buttons-set>a"));
-               // _wait.Until(ExpectedConditions.ElementToBeClickable(createAnAccountButton));
+                // _wait.Until(ExpectedConditions.ElementToBeClickable(createAnAccountButton));
                 createAnAccountButton.Click();
             }
 
@@ -112,6 +120,27 @@ namespace Guru99
             _driver.FindElement(By.XPath("//button[@title='Register']"))
                    .Click();
             Console.WriteLine("The button has been clicked.");
+            Thread.Sleep(5000);
+        }
+
+        [TestMethod]
+        public void VerifyRegistionIsDone()
+        {
+           
+            IWebElement failMessage = _driver.FindElement(By.ClassName("error-msg"));
+            // IWebElement successMessage = _driver.FindElement(By.ClassName("success-msg"));
+
+            if (failMessage.Displayed)
+            {
+                Console.WriteLine("Message: " + failMessage.Text);
+                Thread.Sleep(5000);
+            }
+
+            //if(successMessage.Displayed)
+            //{
+            //    Console.WriteLine("Message: " + successMessage.Text);
+            //    Thread.Sleep(5000);
+            //}
         }
 
         [TestCleanup]

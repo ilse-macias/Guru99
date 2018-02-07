@@ -100,6 +100,17 @@ namespace Guru99
             account.MyAccountOption();
             account.CreateAccountAndFillInfo();
             account.RegisterButton();
+            account.VerifyRegistionIsDone();
+
+            //try
+            //{
+             
+            //}
+
+            //catch (NoSuchElementException ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
             account.TearDown();
         }
     }
