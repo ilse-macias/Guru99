@@ -20,8 +20,8 @@ namespace Guru99
         Mobile mobile;
         MobileProducts mobileProducts;
         Cart cart;
+        Television television;
 
-        Television television = new Television();
         Account account = new Account();
         
         //Mobile.cs
@@ -86,17 +86,25 @@ namespace Guru99
             mobile.TearDown();
         }
 
-        //Account.cs
+        //Television.cs
+        //The idea is separate some methods of Television.cs to Account.cs
         [TestMethod]
         [TestCategory("Verify you can create account in E-commerce site and can share wishlist to other people using email.")]
         public void Ecommerce()
         {
-            account.Setup();
-            account.MyAccountOption();
-            account.CreateAccountAndFillInfo("Yudi", "Ramos", "test@mailinator.com", "123456", "123456");
-            account.RegisterButton();
-            account.VerifyRegistionIsDone();
-            account.TearDown();
+            television = new Television();
+
+            television.Setup();
+            television.MyAccountOption();
+            //television.CreateAccountAndFillInfo("Yudi", "Ramos", "test@mailinator.com", "123456", "123456");
+            //television.RegisterButton();
+            //account.VerifyRegistionIsDone();
+            television.LogIn("test@mailinator.com", "123456");
+            television.ClickOnTelevisionOption(TelevisionLink);
+            television.AddToWishListTV();
+            television.ShareWishList();
+            television.VerifyIfWishListIsShare();
+            television.TearDown();
         }
     }
 }

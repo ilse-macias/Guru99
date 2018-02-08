@@ -175,13 +175,6 @@ namespace Guru99
             //Compare labels.
         }
 
-        //**Ecommerce**//
-        //[TestMethod]
-        //public void AccountClass()
-        //{
-
-        //}
-
         [TestCleanup]
         public void TearDown()
         {
