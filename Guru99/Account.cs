@@ -1,41 +1,14 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Guru99
 {
     [TestClass]
-    public class Account
+    public class Account : BaseTestClass
     {
-        private IWebDriver _driver;
-        private ChromeOptions _options;
-        private WebDriverWait _wait;
-        private Actions _actions;
-
-        public const string MobileLink = "MOBILE";
-        string url = "http://live.guru99.com/index.php/";
-
-        [TestInitialize]
-        public void Setup()
-        {
-            _options = new ChromeOptions();
-            _driver = new ChromeDriver(_options);
-            _actions = new Actions(_driver);
-            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-            
-            _driver.Manage().Cookies.DeleteAllCookies();
-            _driver.Navigate().GoToUrl(url);
-            _driver.Manage().Window.Maximize();
-        }
-
         [TestMethod]
         [TestCategory("Click on 'My Account' link.")]
         public void MyAccountOption()
@@ -143,13 +116,6 @@ namespace Guru99
             //    Console.WriteLine("Message: " + successMessage.Text);
             //    Thread.Sleep(5000);
             //}
-        }
-
-        [TestCleanup]
-        public void TearDown()
-        {
-            _driver.Close();
-            _driver.Quit();
         }
     }
 }

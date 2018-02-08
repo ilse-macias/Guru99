@@ -20,8 +20,8 @@ namespace Guru99
         Mobile mobile;
         MobileProducts mobileProducts;
         Cart cart;
-        Television television;
 
+        Television television = new Television();
         Account account = new Account();
         
         //Mobile.cs
@@ -32,7 +32,8 @@ namespace Guru99
             mobile = new Mobile();
 
             mobile.Setup();
-            mobile.ClickOnMobileOption(MobileLink);
+            //mobile.ClickOnMobileOption(MobileLink);
+            mobile.ClickOnElementOption(Constants.MobileLink);
             mobile.VerifyTitle();
             mobile.SortByName();
             mobile.TearDown();
@@ -46,7 +47,8 @@ namespace Guru99
             mobileProducts = new MobileProducts();
 
             mobileProducts.Setup();
-            mobileProducts.ClickOnMobileOption(MobileLink);
+            //mobileProducts.ClickOnMobileOption(MobileLink);
+            mobile.ClickOnElementOption(Constants.MobileLink);
             mobileProducts.CostOfSonyXperiaMobile();
             mobileProducts.ClickOnSonyXperia();
             mobileProducts.PriceDescriptionOfXperiaMobile();
@@ -63,7 +65,8 @@ namespace Guru99
             cart = new Cart();
 
             cart.Setup();
-            cart.ClickOnMobileOption(MobileLink);
+            //cart.ClickOnMobileOption(MobileLink);
+            cart.ClickOnElementOption(Constants.MobileLink);
             //mobile.CartClass();
             cart.AddToCartButton();
             cart.ChangeQuantity();
@@ -79,32 +82,25 @@ namespace Guru99
         public void HandlingPopupWindows()
         {
             mobile.Setup();
-            mobile.ClickOnMobileOption(MobileLink);
+            //mobile.ClickOnMobileOption(MobileLink);
+            mobile.ClickOnElementOption(Constants.MobileLink);
             mobile.AddToCompareLink();
             mobile.CompareButton();
             mobile.PopUpWindows();
             mobile.TearDown();
         }
 
-        //Television.cs
-        //The idea is separate some methods of Television.cs to Account.cs
+        //Account.cs
         [TestMethod]
         [TestCategory("Verify you can create account in E-commerce site and can share wishlist to other people using email.")]
         public void Ecommerce()
         {
-            television = new Television();
-
-            television.Setup();
-            television.MyAccountOption();
-            //television.CreateAccountAndFillInfo("Yudi", "Ramos", "test@mailinator.com", "123456", "123456");
-            //television.RegisterButton();
-            //account.VerifyRegistionIsDone();
-            television.LogIn("test@mailinator.com", "123456");
-            television.ClickOnTelevisionOption(TelevisionLink);
-            television.AddToWishListTV();
-            television.ShareWishList();
-            television.VerifyIfWishListIsShare();
-            television.TearDown();
+            account.Setup();
+            account.MyAccountOption();
+            account.CreateAccountAndFillInfo("Yudi", "Ramos", "test@mailinator.com", "123456", "123456");
+            account.RegisterButton();
+            account.VerifyRegistionIsDone();
+            account.TearDown();
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Threading;
@@ -8,48 +7,8 @@ using System.Threading;
 namespace Guru99
 {
     [TestClass]
-    public class MobileProducts // : Mobile
+    public class MobileProducts : BaseTestClass
     {
-        private IWebDriver _driver;
-        private ChromeOptions _chromeOptions;
-        private WebDriverWait _wait;
-
-        public const string MobileLink = "MOBILE";
-        string url = "http://live.guru99.com/index.php/";
-        //MobileProducts mobileProducts = new MobileProducts();
-
-        [TestInitialize]
-        public void Setup()
-        {
-            //  Cart cart = new Cart();
-            _chromeOptions = new ChromeOptions();
-            _driver = new ChromeDriver(_chromeOptions);
-            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-
-            _driver.Manage().Cookies.DeleteAllCookies();
-            _driver.Navigate().GoToUrl(url);
-            _driver.Manage().Window.Maximize();
-        }
-
-        //[TestMethod]
-        //[TestCategory("Call methods of mobile using inheritance.")]
-        //public void AddCeltoCart()
-        //{
-        //    //llamando los metodos de la clase gracias a la herencia
-        //    this.Setup();
-        //    this.ClickOnMobileOption("MOBILE");
-        //    //this.VerifyTitle();
-        //    //this.SortByName();
-        //    Console.WriteLine("Hello");
-        //    CostOfSonyXperiaMobile();
-        //    ClickOnSonyXperia();
-        //    PriceDescriptionOfXperiaMobile();
-        //    ReadMobileDetails();
-        //    CompareValuesPrices();
-
-        //    this.TearDown();
-        //}
-
         [TestMethod]
         [TestCategory("Click on 'Mobile' option of the menu.")]
         public void ClickOnMobileOption(string linkMobile)
@@ -127,13 +86,6 @@ namespace Guru99
             {
                 Console.WriteLine(e.Message);
             }
-        }
-
-        [TestCleanup]
-        public void TearDown()
-        {
-            _driver.Close();
-            _driver.Quit();
         }
     }
 }
