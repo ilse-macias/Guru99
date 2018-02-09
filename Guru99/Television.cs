@@ -1,82 +1,20 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Guru99
 {
     [TestClass]
-    public class Television
+    public class Television : TestBase, IAccount
     {
-        private IWebDriver _driver;
-        private ChromeOptions _options;
-        private WebDriverWait _wait;
-        private Actions _actions;
-
-        public const string TvLink = "TV";
-        string url = "http://live.guru99.com/index.php/";
-
-        [TestInitialize]
-        public void Setup()
-        {
-            _options = new ChromeOptions();
-            _driver = new ChromeDriver(_options);
-            _actions = new Actions(_driver);
-            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-
-            _driver.Manage().Cookies.DeleteAllCookies();
-            _driver.Navigate().GoToUrl(url);
-            _driver.Manage().Window.Maximize();
-        }
-
-        ///*** Account.cs ***///
-        [TestMethod]
-        [TestCategory("Click on 'My Account' link.")]
-        public void MyAccountOption()
-        {
-            //Account
-            IWebElement account = _driver.FindElement(By.XPath("//*[@class='skip-link skip-account']"));
-            _wait.Until(ExpectedConditions.ElementToBeClickable(account));
-            account.Click();
-            Thread.Sleep(5000);
-
-            //Select 'My Account' sub-option using actions.
-            IWebElement myAccountLink = _driver.FindElement(By.CssSelector("#header-account>div>ul>li.first>a"));
-            try
-            {
-                _actions.Click(myAccountLink)
-                    .Build()
-                    .Perform();
-
-                //_wait.Until(ExpectedConditions.ElementToBeSelected(myAccountLink));
-                Thread.Sleep(5000);
-
-                //string myAccountLink = "My Account";
-                //_driver.FindElement(By.LinkText(myAccountLink)).Click();
-                //Thread.Sleep(5000);
-
-                Console.WriteLine("Link clicked: " + myAccountLink);
-            }
-
-            catch (WebDriverTimeoutException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
+        ///*** MyAccountRegister.cs ***///
         [TestMethod]
         [TestCategory("Click 'Create Account' link and fill 'New User' information except 'Email ID'.")]
         public void CreateAccountAndFillInfo(string firstName, string lastName, string email, string password, string confirmPassword)
         {
-
             try
             {
                 IWebElement createAnAccountButton = _driver.FindElement(By.CssSelector("#login-form>div>div.col-1.new-users>div.buttons-set>a"));
@@ -136,6 +74,8 @@ namespace Guru99
 
             if (failMessage.Displayed)
             {
+                Screenshot ss = ((ITakesScreenshot)_driver).GetScreenshot();
+                ss.SaveAsFile(@"C:\Users\Leonime\Desktop\screenshot\ErrorMsg.png", ScreenshotImageFormat.Png);
                 Console.WriteLine("Message: " + failMessage.Text);
                 Thread.Sleep(5000);
             }
@@ -147,6 +87,7 @@ namespace Guru99
             //}
         }
 
+        ///** MyAccountLogin.cs **///
         [TestMethod]
         public void LogIn(string email, string password)
         {
@@ -154,7 +95,7 @@ namespace Guru99
                    .SendKeys(email);
             Console.WriteLine("Email: " + email);
             Thread.Sleep(5000);
-          
+
             _driver.FindElement(By.Id("pass"))
                 .SendKeys(password);
             Thread.Sleep(5000);
@@ -166,15 +107,6 @@ namespace Guru99
         }
 
         ///**Television***///
-        [TestMethod]
-        public void ClickOnTelevisionOption(string TelevisionLink)
-        {
-            IWebElement clickOnTelevision = _driver.FindElement(By.LinkText(TvLink));
-            _wait.Until(ExpectedConditions.ElementToBeClickable(clickOnTelevision));
-            clickOnTelevision.Click();
-            Console.WriteLine("The link selected is: " + TvLink);
-        }
-
         [TestMethod]
         public void AddToWishListTV()
         {
@@ -229,13 +161,6 @@ namespace Guru99
 
             Assert.AreEqual(message, shareMessage.Text);
             Console.WriteLine("The message are matcheables.");
-        }
-
-        [TestCleanup]
-        public void TearDown()
-        {
-            _driver.Close();
-            _driver.Quit();
         }
     }
 }

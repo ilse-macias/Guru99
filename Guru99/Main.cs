@@ -1,38 +1,30 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Guru99
 {
     [TestClass]
     public class Main
     {
-        public const string MobileLink = "MOBILE";
-        public const string TelevisionLink = "TV";
-        
         Mobile mobile;
         MobileProducts mobileProducts;
         Cart cart;
         Television television;
+        PurchaseProducts purchaseProducts;
+        //MyAccountLogin myAccountLogin;
+        //   Menu menu;
 
-        Account account = new Account();
-        
+        // MyAccountRegister account = new MyAccountRegister();
+
         //Mobile.cs
         [TestMethod]
         [TestCategory("Verify item in Mobile List page can be sorted by 'Name'.")]
         public void VerifyAndSortByName()
         {
             mobile = new Mobile();
+            //menu = new Menu();
 
             mobile.Setup();
-            mobile.ClickOnMobileOption(MobileLink);
+            mobile.ClickAnOption(Constants.MOBILE_LINK);
             mobile.VerifyTitle();
             mobile.SortByName();
             mobile.TearDown();
@@ -46,7 +38,7 @@ namespace Guru99
             mobileProducts = new MobileProducts();
 
             mobileProducts.Setup();
-            mobileProducts.ClickOnMobileOption(MobileLink);
+            mobileProducts.ClickAnOption(Constants.MOBILE_LINK);
             mobileProducts.CostOfSonyXperiaMobile();
             mobileProducts.ClickOnSonyXperia();
             mobileProducts.PriceDescriptionOfXperiaMobile();
@@ -63,8 +55,7 @@ namespace Guru99
             cart = new Cart();
 
             cart.Setup();
-            cart.ClickOnMobileOption(MobileLink);
-            //mobile.CartClass();
+            cart.ClickAnOption(Constants.MOBILE_LINK);
             cart.AddToCartButton();
             cart.ChangeQuantity();
             cart.ErrorMessage();
@@ -79,7 +70,7 @@ namespace Guru99
         public void HandlingPopupWindows()
         {
             mobile.Setup();
-            mobile.ClickOnMobileOption(MobileLink);
+            mobile.ClickAnOption(Constants.MOBILE_LINK);
             mobile.AddToCompareLink();
             mobile.CompareButton();
             mobile.PopUpWindows();
@@ -93,18 +84,33 @@ namespace Guru99
         public void Ecommerce()
         {
             television = new Television();
+           // myAccountLogin = new MyAccountLogin();
 
             television.Setup();
+            television.ClickAnOption(Constants.ACCOUNT);
             television.MyAccountOption();
             //television.CreateAccountAndFillInfo("Yudi", "Ramos", "test@mailinator.com", "123456", "123456");
             //television.RegisterButton();
             //account.VerifyRegistionIsDone();
             television.LogIn("test@mailinator.com", "123456");
-            television.ClickOnTelevisionOption(TelevisionLink);
+            television.ClickAnOption(Constants.TV_LINK);
             television.AddToWishListTV();
             television.ShareWishList();
             television.VerifyIfWishListIsShare();
             television.TearDown();
+        }
+
+        [TestMethod]
+        [TestCategory("Verify user is able to purchase product using registered email ID.")]
+        public void PurchaseProductUsingEmail()
+        {
+            purchaseProducts = new PurchaseProducts();
+
+            purchaseProducts.Setup();
+            purchaseProducts.ClickAnOption(Constants.ACCOUNT);
+            purchaseProducts.MyAccountOption();
+            purchaseProducts.LogIn("test@mailinator.com", "123456");
+           // television.AddToWishListTV();
         }
     }
 }

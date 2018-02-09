@@ -1,52 +1,15 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Guru99
 {
     [TestClass]
-    public class Mobile
+    public class Mobile : TestBase
     {
-        private IWebDriver _driver;
-        private ChromeOptions _chromeOptions;
-        private WebDriverWait _wait;
-
-        public const string MobileLink = "MOBILE";
-        string url = "http://live.guru99.com/index.php/";
-        //MobileProducts mobileProducts = new MobileProducts();
-
-        Cart cart = new Cart();
-
-        [TestInitialize]
-        public void Setup()
-        {
-          //  Cart cart = new Cart();
-            _chromeOptions = new ChromeOptions();
-            _driver = new ChromeDriver(_chromeOptions);
-            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-
-            _driver.Manage().Cookies.DeleteAllCookies();
-            _driver.Navigate().GoToUrl(url);
-            _driver.Manage().Window.Maximize();
-        }
-
-        [TestMethod]
-        [TestCategory("Click on 'Mobile' option of the menu.")]
-        public void ClickOnMobileOption(string linkMobile)
-        {
-            IWebElement mobileOption = _driver.FindElement(By.LinkText(linkMobile));
-            _wait.Until(ExpectedConditions.ElementToBeClickable(mobileOption)).Click();
-            Console.WriteLine("The option selected is: " + linkMobile);
-        }
-
         [TestMethod]
         [TestCategory("Verify the title.")]
         public void VerifyTitle()
@@ -173,13 +136,6 @@ namespace Guru99
             Console.WriteLine("Title are equals " + compareTitle.Text);
 
             //Compare labels.
-        }
-
-        [TestCleanup]
-        public void TearDown()
-        {
-            _driver.Close();
-            _driver.Quit();
         }
     }
 }
