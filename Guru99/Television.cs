@@ -8,7 +8,7 @@ using System.Threading;
 namespace Guru99
 {
     [TestClass]
-    public class Television : TestBase, IAccount
+    public class Television : TestBase//, IAccount
     {
         ///*** MyAccountRegister.cs ***///
         [TestMethod]
@@ -54,15 +54,6 @@ namespace Guru99
             confirmPasswordField.SendKeys(confirmPassword);
             Thread.Sleep(5000);
             Console.WriteLine("Confirm password: " + confirmPasswordField.GetAttribute("value"));
-        }
-
-        [TestMethod]
-        public void RegisterButton()
-        {
-            _driver.FindElement(By.XPath("//button[@title='Register']"))
-                   .Click();
-            Console.WriteLine("The button has been clicked.");
-            Thread.Sleep(5000);
         }
 
         [TestMethod]

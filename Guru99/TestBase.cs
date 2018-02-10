@@ -1,9 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Guru99
@@ -11,6 +13,7 @@ namespace Guru99
     public class TestBase
     {
         protected IWebDriver _driver;
+        //protected FireFoxOption _options;
         protected ChromeOptions _options;
         protected WebDriverWait _wait;
         protected Actions _actions;
@@ -36,19 +39,14 @@ namespace Guru99
             IWebElement elementOption = _driver.FindElement(By.LinkText(elementLink));
             _wait.Until(ExpectedConditions.ElementToBeClickable(elementOption)).Click();
             Console.WriteLine("The option selected is: " + elementLink);
+
+           // string noos = TestContext.TestName.ToString();
         }
 
         [TestMethod]
         [TestCategory("Click on 'My Account' link.")]
         public void MyAccountOption()
         {
-            ////IWebElement account = _driver.FindElement(By.XPath("//*[@class='skip-link skip-account']"));
-            //IWebElement account = _driver.FindElement(By.LinkText(accountLink));
-            //_wait.Until(ExpectedConditions.ElementToBeClickable(account));
-            //account.Click();
-            //Thread.Sleep(5000);
-
-            //Select 'My Account' sub-option using actions.
             IWebElement myAccountLink = _driver.FindElement(By.CssSelector("#header-account>div>ul>li.first>a"));
             try
             {
@@ -70,6 +68,18 @@ namespace Guru99
             {
                 Console.WriteLine(ex.Message);
             }
+
+        }
+
+        //****//
+        [TestCategory("Screenshot")]
+        public void ScreenShot()
+        {
+            // Screenshot ss = ((ITakesScreenshot)_driver).GetScreenshot();
+
+            ITakesScreenshot screen = _driver as ITakesScreenshot;
+            Screenshot ss = screen.GetScreenshot();
+            ss.SaveAsFile(@"C:\Users\Leonime\Desktop\screenshot\img01.png", ScreenshotImageFormat.Png);
         }
 
         [TestCleanup]

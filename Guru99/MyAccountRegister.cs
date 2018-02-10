@@ -46,8 +46,7 @@ namespace Guru99
         [TestMethod]
         [TestCategory("Click 'Create Account' link and fill 'New User' information except 'Email ID'.")]
         public void CreateAccountAndFillInfo(string firstName, string lastName, string email, string password, string confirmPassword)
-        {
-            
+        {            
             try
             {
                 IWebElement createAnAccountButton = _driver.FindElement(By.CssSelector("#login-form>div>div.col-1.new-users>div.buttons-set>a"));
@@ -87,17 +86,14 @@ namespace Guru99
             confirmPasswordField.SendKeys(confirmPassword);
             Thread.Sleep(5000);
             Console.WriteLine("Confirm password: " + confirmPasswordField.GetAttribute("value"));
-        }
 
-        [TestMethod]
-        public void RegisterButton()
-        {
+
             _driver.FindElement(By.XPath("//button[@title='Register']"))
-                   .Click();
-            Console.WriteLine("The button has been clicked.");
+                .Click();
             Thread.Sleep(5000);
+            Console.WriteLine("The button has been clicked.");
         }
-
+                
         [TestMethod]
         public void VerifyRegistionIsDone()
         {

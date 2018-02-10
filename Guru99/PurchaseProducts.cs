@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting.Logging;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace Guru99
 {
     public class PurchaseProducts : TestBase
     {
-        //**MyAccountLogin**//
+        //**MyAccountLogin.cs**//
         [TestMethod]
         public void LogIn(string email, string password)
         {
@@ -29,5 +31,15 @@ namespace Guru99
             Console.WriteLine("The botton was clicked.");
             Thread.Sleep(5000);
         }
+
+        //[TestMethod]
+        //public void BlockAccount()
+        //{
+        //   //_driver.FindElement(By.ClassName("block-content"));
+
+        //    IWebElement ekee = _driver.FindElement(By.LinkText(Constants.MY_WISHLIST));
+        //    ekee.Click();
+        //    Thread.Sleep(5000);
+        //}
     }
 }

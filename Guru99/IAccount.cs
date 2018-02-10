@@ -9,7 +9,9 @@ namespace Guru99
 {
     public interface IAccount
     { 
-        //void MyAccountLogin(string email, string password);
+        void MyAccountLogin(string email, string password);
+
         void LogIn(string email, string password);
+        void CreateAccountAndFillInfo(string firstName, string lastName, string email, string password, string confirmPassword);
     }
 }

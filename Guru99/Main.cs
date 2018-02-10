@@ -10,10 +10,6 @@ namespace Guru99
         Cart cart;
         Television television;
         PurchaseProducts purchaseProducts;
-        //MyAccountLogin myAccountLogin;
-        //   Menu menu;
-
-        // MyAccountRegister account = new MyAccountRegister();
 
         //Mobile.cs
         [TestMethod]
@@ -84,7 +80,6 @@ namespace Guru99
         public void Ecommerce()
         {
             television = new Television();
-           // myAccountLogin = new MyAccountLogin();
 
             television.Setup();
             television.ClickAnOption(Constants.ACCOUNT);
@@ -110,7 +105,11 @@ namespace Guru99
             purchaseProducts.ClickAnOption(Constants.ACCOUNT);
             purchaseProducts.MyAccountOption();
             purchaseProducts.LogIn("test@mailinator.com", "123456");
-           // television.AddToWishListTV();
+            //   purchaseProducts.BlockAccount();
+          //  purchaseProducts.ClickAnOption(Constants.CART);
+            //purchaseProducts.ClickAnOption(Constants.ACCOUNT);
+            //purchaseProducts.AddToWishListTV();
+            purchaseProducts.TearDown();
         }
     }
 }
