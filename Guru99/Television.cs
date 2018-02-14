@@ -8,7 +8,7 @@ using System.Threading;
 namespace Guru99
 {
     [TestClass]
-    public class Television : TestBase//, IAccount
+    public class Television : TestBase
     {
         ///*** MyAccountRegister.cs ***///
         [TestMethod]

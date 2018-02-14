@@ -7,6 +7,15 @@ namespace Guru99
 {
     public class MyAccountLogin : TestBase
     {
+        public string Email { get; set; }
+        public string Password { get; set; }
+
+        public MyAccountLogin(string email, string password)
+        {
+            Email = email;
+            Password = password;
+        }
+
         [TestMethod]
         public void LogIn(string email, string password)
         {

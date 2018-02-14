@@ -18,9 +18,9 @@ namespace Guru99
             {
                 string title = _driver.FindElement(By.XPath("//div[@class='page-title category-title']"))
                     .Text;
-                Console.WriteLine("The title is: " + title);
+                utils.LogMsg("The title is: " + title);
                 Assert.AreEqual("MOBILE", title);
-                Console.WriteLine("The titles are matching.");
+                utils.LogMsg("The titles are matching");
             }
 
             catch (NoSuchElementException ex)
@@ -45,12 +45,12 @@ namespace Guru99
                 selectingElement.SelectByIndex(1);
                 select = selectingElement;
 
-                Console.WriteLine("The option selected is: " + select);
+                utils.LogMsg("The option selected is: " + select);
 
                 //Take a screenshot for evidence.
                 Screenshot ss = ((ITakesScreenshot)_driver).GetScreenshot();
                 ss.SaveAsFile(@"C:\Users\Leonime\Desktop\screenshot\img01.png", ScreenshotImageFormat.Png);
-                Console.WriteLine("User has screenshoted.");
+                utils.LogMsg("User has screenshoted.");
             }
 
             catch (NoSuchElementException e)

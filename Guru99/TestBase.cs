@@ -7,6 +7,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.IO;
 
 namespace Guru99
 {
@@ -17,6 +18,7 @@ namespace Guru99
         protected ChromeOptions _options;
         protected WebDriverWait _wait;
         protected Actions _actions;
+        protected Utils utils;
 
         [TestInitialize]
         public void Setup()
@@ -25,7 +27,8 @@ namespace Guru99
             _driver = new ChromeDriver(_options);
             _actions = new Actions(_driver);
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-
+            utils = new Utils();
+           
             _driver.Manage().Cookies.DeleteAllCookies();
             _driver.Navigate().GoToUrl(Constants.URL);
             _driver.Manage().Window.Maximize();
@@ -38,15 +41,15 @@ namespace Guru99
         {
             IWebElement elementOption = _driver.FindElement(By.LinkText(elementLink));
             _wait.Until(ExpectedConditions.ElementToBeClickable(elementOption)).Click();
-            Console.WriteLine("The option selected is: " + elementLink);
-
-           // string noos = TestContext.TestName.ToString();
+           // Console.WriteLine("The option selected is: " + elementLink);
+            //utils.LogMsg("The option selected is: " + elementLink);
         }
 
         [TestMethod]
         [TestCategory("Click on 'My Account' link.")]
         public void MyAccountOption()
         {
+         //   utils = new Utils();
             IWebElement myAccountLink = _driver.FindElement(By.CssSelector("#header-account>div>ul>li.first>a"));
             try
             {
@@ -61,6 +64,7 @@ namespace Guru99
                 //_driver.FindElement(By.LinkText(myAccountLink)).Click();
                 //Thread.Sleep(5000);
 
+                //utils.Log("Link clicked: " + myAccountLink, write);
                 Console.WriteLine("Link clicked: " + myAccountLink);
             }
 

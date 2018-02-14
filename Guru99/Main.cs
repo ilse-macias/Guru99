@@ -10,6 +10,8 @@ namespace Guru99
         Cart cart;
         Television television;
         PurchaseProducts purchaseProducts;
+        MyAccountLogin myAccountLogin;
+        Utils utils;
 
         //Mobile.cs
         [TestMethod]
@@ -17,13 +19,14 @@ namespace Guru99
         public void VerifyAndSortByName()
         {
             mobile = new Mobile();
-            //menu = new Menu();
+            utils = new Utils();
 
             mobile.Setup();
             mobile.ClickAnOption(Constants.MOBILE_LINK);
             mobile.VerifyTitle();
             mobile.SortByName();
             mobile.TearDown();
+            utils.LogMsg("PASS");
         }
 
         //MobileProducts.cs
@@ -32,6 +35,7 @@ namespace Guru99
         public void VerifyCostOfProductInListAndDetails()
         {
             mobileProducts = new MobileProducts();
+            utils = new Utils();
 
             mobileProducts.Setup();
             mobileProducts.ClickAnOption(Constants.MOBILE_LINK);
@@ -41,6 +45,7 @@ namespace Guru99
             mobileProducts.ReadMobileDetails();
             mobileProducts.CompareValuesPrices();
             mobileProducts.TearDown();
+            utils.LogMsg("PASS");
         }
 
         //Cart.cs
@@ -49,6 +54,7 @@ namespace Guru99
         public void NoAddMoreProductsInCart()
         {
             cart = new Cart();
+            utils = new Utils();
 
             cart.Setup();
             cart.ClickAnOption(Constants.MOBILE_LINK);
@@ -58,6 +64,7 @@ namespace Guru99
             cart.EmptyCartLink();
             cart.VerifyCartIsEmpty();
             cart.TearDown();
+            utils.LogMsg("PASS");
         }
 
         //Mobile.cs 2 windows.
@@ -71,6 +78,7 @@ namespace Guru99
             mobile.CompareButton();
             mobile.PopUpWindows();
             mobile.TearDown();
+            utils.LogMsg("PASS");
         }
 
         //Television.cs
@@ -80,13 +88,14 @@ namespace Guru99
         public void Ecommerce()
         {
             television = new Television();
+           // myAccountLogin = new MyAccountLogin("test@mailinator.com", "123456");
 
             television.Setup();
             television.ClickAnOption(Constants.ACCOUNT);
             television.MyAccountOption();
             //television.CreateAccountAndFillInfo("Yudi", "Ramos", "test@mailinator.com", "123456", "123456");
             //television.RegisterButton();
-            //account.VerifyRegistionIsDone();
+            // account.VerifyRegistionIsDone();
             television.LogIn("test@mailinator.com", "123456");
             television.ClickAnOption(Constants.TV_LINK);
             television.AddToWishListTV();
