@@ -39,7 +39,7 @@ namespace Guru99
             write.WriteLine("Log Entry: ");
             write.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
                 DateTime.Now.ToLongDateString());
-            write.WriteLine("{0} Message:", logMessage);
+            write.WriteLine("{0}", logMessage);
             write.WriteLine("-------------------------------");
         }
 
