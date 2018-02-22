@@ -1,13 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
 using System.Threading;
-using System.IO;
+using NLog;
 
 namespace Guru99
 {
@@ -18,7 +16,8 @@ namespace Guru99
         protected ChromeOptions _options;
         protected WebDriverWait _wait;
         protected Actions _actions;
-        protected Utils utils;
+        //protected Utils utils;
+        protected static Logger _logger = LogManager.GetCurrentClassLogger(); 
 
         [TestInitialize]
         public void Setup()
@@ -27,7 +26,7 @@ namespace Guru99
             _driver = new ChromeDriver(_options);
             _actions = new Actions(_driver);
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-            utils = new Utils();
+          //  utils = new Utils();
            
             _driver.Manage().Cookies.DeleteAllCookies();
             _driver.Navigate().GoToUrl(Constants.URL);
@@ -41,8 +40,9 @@ namespace Guru99
         {
             IWebElement elementOption = _driver.FindElement(By.LinkText(elementLink));
             _wait.Until(ExpectedConditions.ElementToBeClickable(elementOption)).Click();
-           // Console.WriteLine("The option selected is: " + elementLink);
+            // Console.WriteLine("The option selected is: " + elementLink);
             //utils.LogMsg("The option selected is: " + elementLink);
+            _logger.Info($"The option selected is:=>{elementLink}");
         }
 
         [TestMethod]

@@ -1,0 +1,103 @@
+Log Entry : 
+5:28:26 PM Tuesday, February 13, 2018
+  :
+  :The option selected is: MOBILE
+-------------------------------
+Log Entry : 
+5:28:26 PM Tuesday, February 13, 2018
+  :
+  :The title is: MOBILE
+-------------------------------
+Log Entry : 
+5:28:26 PM Tuesday, February 13, 2018
+  :
+  :The titles are matching
+-------------------------------
+Log Entry : 
+5:40:30 PM Tuesday, February 13, 2018
+:The title is: MOBILE
+-------------------------------
+Log Entry : 
+5:40:30 PM Tuesday, February 13, 2018
+:The titles are matching
+-------------------------------
+Log Entry: 
+5:45:15 PM Tuesday, February 13, 2018
+The title is: MOBILE
+-------------------------------
+Log Entry: 
+5:45:15 PM Tuesday, February 13, 2018
+The titles are matching
+-------------------------------
+Log Entry: 
+5:45:21 PM Tuesday, February 13, 2018
+The option selected is: OpenQA.Selenium.Support.UI.SelectElement
+-------------------------------
+Log Entry: 
+5:45:21 PM Tuesday, February 13, 2018
+User has screenshoted.
+-------------------------------
+Log Entry: 
+5:45:21 PM Tuesday, February 13, 2018
+PASS
+-------------------------------
+Log Entry: 
+5:47:27 PM Tuesday, February 13, 2018
+The title is: MOBILE Message:
+-------------------------------
+Log Entry: 
+5:47:27 PM Tuesday, February 13, 2018
+The titles are matching Message:
+-------------------------------
+Log Entry: 
+5:47:32 PM Tuesday, February 13, 2018
+The option selected is: OpenQA.Selenium.Support.UI.SelectElement Message:
+-------------------------------
+Log Entry: 
+5:47:32 PM Tuesday, February 13, 2018
+User has screenshoted. Message:
+-------------------------------
+Log Entry: 
+5:47:32 PM Tuesday, February 13, 2018
+PASS Message:
+-------------------------------
+Log Entry: 
+11:56:43 AM Tuesday, February 20, 2018
+The title is: MOBILE Message:
+-------------------------------
+Log Entry: 
+11:56:43 AM Tuesday, February 20, 2018
+The titles are matching Message:
+-------------------------------
+Log Entry: 
+11:56:48 AM Tuesday, February 20, 2018
+The option selected is: OpenQA.Selenium.Support.UI.SelectElement Message:
+-------------------------------
+Log Entry: 
+11:56:49 AM Tuesday, February 20, 2018
+User has screenshoted. Message:
+-------------------------------
+Log Entry: 
+11:56:49 AM Tuesday, February 20, 2018
+PASS Message:
+-------------------------------
+Log Entry: 
+12:00:11 PM Tuesday, February 20, 2018
+The title is: MOBILE
+-------------------------------
+Log Entry: 
+12:00:11 PM Tuesday, February 20, 2018
+The titles are matching
+-------------------------------
+Log Entry: 
+12:00:17 PM Tuesday, February 20, 2018
+The option selected is: OpenQA.Selenium.Support.UI.SelectElement
+-------------------------------
+Log Entry: 
+12:00:17 PM Tuesday, February 20, 2018
+User has screenshoted.
+-------------------------------
+Log Entry: 
+12:00:20 PM Tuesday, February 20, 2018
+PASS
+-------------------------------
