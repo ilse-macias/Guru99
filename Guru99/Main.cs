@@ -14,8 +14,9 @@ namespace Guru99
         //Utils utils;
 
         //Mobile.cs
-        [TestMethod]
         [TestCategory("Verify item in Mobile List page can be sorted by 'Name'.")]
+        [TestProperty("Author", "Ilse Macías")]
+        [TestMethod]
         public void VerifyAndSortByName()
         {
             mobile = new Mobile();
@@ -29,8 +30,9 @@ namespace Guru99
         }
 
         //MobileProducts.cs
-        [TestMethod]
         [Description("Verify that cost of product in list page and details page are equal.")]
+        [TestProperty("Author", "Ilse Macías")]
+        [TestMethod]
         public void VerifyCostOfProductInListAndDetails()
         {
             mobileProducts = new MobileProducts();
@@ -47,8 +49,9 @@ namespace Guru99
         }
 
         //Cart.cs
-        [TestMethod]
         [TestCategory("Verify that you cannot add more product in cart than the product available in store")]
+        [TestProperty("Author", "Ilse Macías")]
+        [TestMethod]
         public void NoAddMoreProductsInCart()
         {
             cart = new Cart();
@@ -66,8 +69,9 @@ namespace Guru99
         }
 
         //Mobile.cs 2 windows.
-        [TestMethod]
         [TestCategory("Verify that you are able to compare two product")]
+        [TestProperty("Author", "Ilse Macías")]
+        [TestMethod]
         public void HandlingPopupWindows()
         {
             mobile.Setup();
@@ -81,8 +85,9 @@ namespace Guru99
 
         //Television.cs
         //The idea is separate some methods of Television.cs to Account.cs
-        [TestMethod]
         [TestCategory("Verify you can create account in E-commerce site and can share wishlist to other people using email.")]
+        [TestProperty("Author", "Ilse Macías")]
+        [TestMethod]
         public void Ecommerce()
         {
             television = new Television();
@@ -102,8 +107,9 @@ namespace Guru99
             television.TearDown();
         }
 
-        [TestMethod]
         [TestCategory("Verify user is able to purchase product using registered email ID.")]
+        [TestProperty("Author", "Ilse Macías")]
+        [TestMethod]
         public void PurchaseProductUsingEmail()
         {
             purchaseProducts = new PurchaseProducts();

@@ -54,6 +54,7 @@ namespace Guru99
         }
 
         [Description("Read the Sony Xperia mobile from detail page.")]
+        [TestProperty("Author", "Ilse Macías")]
         [TestMethod]
         public void ReadMobileDetails()
         {
@@ -63,6 +64,7 @@ namespace Guru99
         }
 
         [Description("Compare values in Step 3 and Step 5")]
+        [TestProperty("Author", "Ilse Macías")]
         [TestMethod]
         public void CompareValuesPrices()
         {
