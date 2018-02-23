@@ -17,7 +17,7 @@ namespace Guru99
         protected WebDriverWait _wait;
         protected Actions _actions;
         //protected Utils utils;
-        protected static Logger _logger = LogManager.GetCurrentClassLogger(); 
+        protected static Logger logger = LogManager.GetCurrentClassLogger(); 
 
         [TestInitialize]
         public void Setup()
@@ -42,7 +42,7 @@ namespace Guru99
             _wait.Until(ExpectedConditions.ElementToBeClickable(elementOption)).Click();
             // Console.WriteLine("The option selected is: " + elementLink);
             //utils.LogMsg("The option selected is: " + elementLink);
-            _logger.Info($"The option selected is:=>{elementLink}");
+            logger.Info($"The option selected is: {elementLink}");
         }
 
         [TestMethod]

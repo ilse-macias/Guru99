@@ -8,9 +8,10 @@ namespace Guru99
 {
     [TestClass]
     public class MobileProducts : TestBase
-    {     
+    {
+        [Description("Read the cost of Sony Xperia mobile")]
+        [TestProperty("Author", "Ilse Macías")]
         [TestMethod]
-        [TestCategory("Read the cost of Sony Xperia mobile")]
         public string CostOfSonyXperiaMobile()
         {
             string priceSonyXperia = _driver.FindElement(By.Id("product-price-1"))
@@ -18,13 +19,13 @@ namespace Guru99
             //  _wait.Until(ExpectedConditions.ElementToBeSelected(priceSonyXperia));
             Thread.Sleep(5000);
             Assert.AreEqual("$100.00", priceSonyXperia);
-            Console.WriteLine("Product Value in list and details pagre should be equal " + priceSonyXperia + " dlls.");
-
+            logger.Info($"Product Value in list and details pagre should be equal {priceSonyXperia} dlls.");
             return priceSonyXperia;
         }
 
+        [Description("Click on Sony Xperia mobile.")]
+        [TestProperty("Author", "Ilse Macías")]
         [TestMethod]
-        [TestCategory("Click on Sony Xperia mobile.")]
         public void ClickOnSonyXperia()
         {
             try
@@ -32,36 +33,37 @@ namespace Guru99
                 IWebElement imageSonyXperia = _driver.FindElement(By.Id("product-collection-image-1"));
                 _wait.Until(ExpectedConditions.ElementToBeClickable(imageSonyXperia));
                 imageSonyXperia.Click();
-                Console.WriteLine("Sony Xperia mobile has been clicked.");
+                logger.Info("Sony Xperia mobile has been clicked.");
             }
 
             catch (NoSuchElementException ex)
             {
-                Console.WriteLine(ex.Message);
+                logger.Info(ex.Message);
             }
         }
 
+        [Description("Price of description of Xperia Mobile.")]
+        [TestProperty("Author", "Ilse Macías")]
         [TestMethod]
-        [TestCategory("Price of description of Xperia Mobile.")]
         public string PriceDescriptionOfXperiaMobile()
         {
             string priceDescription = _driver.FindElement(By.Id("product-price-1"))
                 .Text;
-            Console.WriteLine("The price of description is: " + priceDescription);
+            logger.Info($"The price of description is: {priceDescription}");
             return priceDescription;
         }
 
+        [Description("Read the Sony Xperia mobile from detail page.")]
         [TestMethod]
-        [TestCategory("Read the Sony Xperia mobile from detail page.")]
         public void ReadMobileDetails()
         {
             IWebElement readDetailsTab = _driver.FindElement(By.CssSelector("#collateral-tabs>dd.tab-container.current>div>div"));
             //XPATH is not working for text: _driver.FindElement(By.XPath("//div[@class='tab-content']/h2")).Text;
-            Console.WriteLine("The description is: " + readDetailsTab.Text);
+            logger.Info($"The description is: {readDetailsTab.Text}");
         }
 
+        [Description("Compare values in Step 3 and Step 5")]
         [TestMethod]
-        [TestCategory("Compare values in Step 3 and Step 5")]
         public void CompareValuesPrices()
         {
             string one = CostOfSonyXperiaMobile();
@@ -70,12 +72,12 @@ namespace Guru99
             try
             {
                 Assert.AreEqual(two, one);
-                Console.WriteLine("The values are matching.");
+                logger.Info("The values are matching.");
             }
 
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                logger.Info(e.Message);
             }
         }
     }

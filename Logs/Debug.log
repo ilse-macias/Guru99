@@ -1,2 +1,15 @@
 2018-02-21 17:09:05.8175 - Guru99.TestBase.ClickAnOption - INFO}: The option selected is:=>MOBILE 
 2018-02-21 17:09:05.8645 - Guru99.Mobile.VerifyTitle - INFO}: The title is: MOBILE 
+2018-02-22 09:15:23.7890 - Guru99.TestBase.ClickAnOption - INFO}: The option selected is:=>MOBILE 
+2018-02-22 09:15:23.8441 - Guru99.Mobile.VerifyTitle - INFO}: The title is: MOBILE 
+2018-02-22 09:15:23.9912 - Guru99.Mobile.VerifyTitle - INFO}: The titles are matching. 
+2018-02-22 09:15:48.9974 - Guru99.Mobile.SortByName - INFO}: The option selected is: OpenQA.Selenium.Support.UI.SelectElement 
+2018-02-22 09:15:49.3642 - Guru99.Mobile.SortByName - INFO}: User has screenshoted. 
+2018-02-22 16:30:33.2146 - Guru99.TestBase.ClickAnOption - INFO}: The option selected is: MOBILE 
+2018-02-22 16:30:38.2620 - Guru99.MobileProducts.CostOfSonyXperiaMobile - INFO}: Product Value in list and details pagre should be equal $100.00 dlls. 
+2018-02-22 16:30:39.1083 - Guru99.MobileProducts.ClickOnSonyXperia - INFO}: Sony Xperia mobile has been clicked. 
+2018-02-22 16:30:39.1323 - Guru99.MobileProducts.PriceDescriptionOfXperiaMobile - INFO}: The price of description is: $100.00 
+2018-02-22 16:30:39.1613 - Guru99.MobileProducts.ReadMobileDetails - INFO}: The description is: this is Sony Xperia 
+2018-02-22 16:30:44.1813 - Guru99.MobileProducts.CostOfSonyXperiaMobile - INFO}: Product Value in list and details pagre should be equal $100.00 dlls. 
+2018-02-22 16:30:44.2113 - Guru99.MobileProducts.PriceDescriptionOfXperiaMobile - INFO}: The price of description is: $100.00 
+2018-02-22 16:30:44.2113 - Guru99.MobileProducts.CompareValuesPrices - INFO}: The values are matching. 

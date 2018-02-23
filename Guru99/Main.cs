@@ -30,7 +30,7 @@ namespace Guru99
 
         //MobileProducts.cs
         [TestMethod]
-        [TestCategory("Verify that cost of product in list page and details page are equal.")]
+        [Description("Verify that cost of product in list page and details page are equal.")]
         public void VerifyCostOfProductInListAndDetails()
         {
             mobileProducts = new MobileProducts();
@@ -44,7 +44,6 @@ namespace Guru99
             mobileProducts.ReadMobileDetails();
             mobileProducts.CompareValuesPrices();
             mobileProducts.TearDown();
-            //utils.LogMsg("PASS");
         }
 
         //Cart.cs

@@ -8,10 +8,12 @@ using System.Threading;
 namespace Guru99
 {
     [TestClass]
+    [TestCategory("Mobile.cs")]
     public class Mobile : TestBase
     {
+        [Description("Verify the title.")]
+        [TestProperty("Author","Ilse Macías")]
         [TestMethod]
-        [TestCategory("Verify the title.")]
         public void VerifyTitle()
         {
             try
@@ -19,10 +21,9 @@ namespace Guru99
                 string title = _driver.FindElement(By.XPath("//div[@class='page-title category-title']"))
                     .Text;
 
-                _logger.Info($"The title is: {title}");
-                //utils.LogMsg("The title is: " + title);
+                logger.Info($"The title is: {title}");
                 Assert.AreEqual("MOBILE", title);
-               // utils.LogMsg("The titles are matching");
+                logger.Info("The titles are matching.");
             }
 
             catch (NoSuchElementException ex)
@@ -33,8 +34,9 @@ namespace Guru99
             Thread.Sleep(5000);
         }
 
+        [Description("Sort by 'Name'. (DDL)")]
+        [TestProperty("Author", "Ilse Macías")]
         [TestMethod]
-        [TestCategory("Sort by 'Name'. (DDL)")]
         public void SortByName()
         {
             try
@@ -47,11 +49,13 @@ namespace Guru99
                 selectingElement.SelectByIndex(1);
                 select = selectingElement;
 
+                logger.Info($"The option selected is: {select}");
                 //utils.LogMsg("The option selected is: " + select);
 
                 //Take a screenshot for evidence.
                 Screenshot ss = ((ITakesScreenshot)_driver).GetScreenshot();
                 ss.SaveAsFile(@"C:\Users\Leonime\Desktop\screenshot\img01.png", ScreenshotImageFormat.Png);
+                logger.Info("User has screenshoted.");
                // utils.LogMsg("User has screenshoted.");
             }
 
@@ -62,8 +66,9 @@ namespace Guru99
         }
 
         //**HandlingPopupWindows**//
+        [Description("In mobile products list, click on 'Add To Compare' for two mobiles.")]
+        [TestProperty("Author", "Ilse Macías")]
         [TestMethod]
-        [TestCategory("In mobile products list, click on 'Add To Compare' for two mobiles.")]
         public void AddToCompareLink()
         {
             int positionOne = 0;
@@ -111,8 +116,9 @@ namespace Guru99
             }
         }
 
+        [Description("Click on 'COMPARE' button.")]
+        [TestProperty("Author", "Ilse Macías")]
         [TestMethod]
-        [TestCategory("Click on 'COMPARE' button.")]
         public void CompareButton()
         {
             IWebElement compareButton = _driver.FindElement(By.XPath("//button[@title='Compare']"));
@@ -120,14 +126,16 @@ namespace Guru99
             _wait.Until(ExpectedConditions.ElementToBeClickable(compareButton));
         }
 
+        [Description("Verify the pop-up window and check that the products are reflectd in it.")]
+        [TestProperty("Author", "Ilse Macías")]
         [TestMethod]
-        [TestCategory("Verify the pop-up window and check that the products are reflectd in it.")]
         public void PopUpWindows()
         {
             //Switch the windows.
             var windows = _driver.WindowHandles;
             foreach(string handle in windows)
             {
+                logger.Info("");
                 Console.WriteLine("Switching to windows: " + handle);
                 _driver.SwitchTo().Window(handle);
                 Thread.Sleep(5000);
