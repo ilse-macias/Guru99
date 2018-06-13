@@ -37,6 +37,7 @@ namespace Guru99
         [TestMethod]
         [TestCategory("Click an option of the menu.")]
         public void ClickAnOption(string elementLink)
+
         {
             IWebElement elementOption = _driver.FindElement(By.LinkText(elementLink));
             _wait.Until(ExpectedConditions.ElementToBeClickable(elementOption)).Click();
@@ -71,6 +72,12 @@ namespace Guru99
             catch (WebDriverTimeoutException ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+
+            finally
+            {
+                _driver.Quit();
+                _driver.Close();
             }
 
         }

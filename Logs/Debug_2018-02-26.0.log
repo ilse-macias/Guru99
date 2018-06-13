@@ -1,0 +1,10 @@
+2018-02-26 11:13:55.3570 - Guru99.TestBase.ClickAnOption - INFO}: The option selected is: MOBILE 
+2018-02-26 11:13:55.4951 - Guru99.Mobile.VerifyTitle - INFO}: The title is: MOBILE 
+2018-02-26 11:13:55.4951 - Guru99.Mobile.VerifyTitle - INFO}: The titles are matching. 
+2018-02-26 11:14:00.9099 - Guru99.Mobile.SortByName - INFO}: The option selected is: OpenQA.Selenium.Support.UI.SelectElement 
+2018-02-26 11:14:01.2611 - Guru99.Mobile.SortByName - INFO}: User has screenshoted. 
+2018-02-26 11:53:56.5849 - Guru99.TestBase.ClickAnOption - INFO}: The option selected is: MOBILE 
+2018-02-26 11:53:56.6349 - Guru99.Mobile.VerifyTitle - INFO}: The title is: MOBILE 
+2018-02-26 11:53:56.6349 - Guru99.Mobile.VerifyTitle - INFO}: The titles are matching. 
+2018-02-26 11:54:01.9973 - Guru99.Mobile.SortByName - INFO}: The option selected is: OpenQA.Selenium.Support.UI.SelectElement 
+2018-02-26 11:54:02.3534 - Guru99.Mobile.SortByName - INFO}: User has screenshoted. 

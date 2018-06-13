@@ -1,0 +1,5 @@
+2018-02-26 12:02:26.0044 - Guru99.TestBase.ClickAnOption - INFO}: The option selected is: MOBILE 
+2018-02-26 12:02:26.0664 - Guru99.Mobile.VerifyTitle - INFO}: The title is: MOBILE 
+2018-02-26 12:02:26.0889 - Guru99.Mobile.VerifyTitle - INFO}: The titles are matching. 
+2018-02-26 12:02:31.5223 - Guru99.Mobile.SortByName - INFO}: The option selected is: OpenQA.Selenium.Support.UI.SelectElement 
+2018-02-26 12:02:31.9012 - Guru99.Mobile.SortByName - INFO}: User has screenshoted. 
